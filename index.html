@@ -1,0 +1,324 @@
+PAGINA WEB PARA ZZUMOS MODELO:
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Digital - [Nombre de tu Restaurante]</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de Tailwind para usar la fuente Inter y un esquema de colores personalizado -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-color': '#A34F0C', // Color principal (Marrón cálido, tipo pan)
+                        'secondary-color': '#0C83A3', // Color secundario (Azul fresco, tipo agua/frescura)
+                        'accent-color': '#FDE047', // Color de acento (Amarillo, tipo brillo/energía)
+                        'bg-light': '#FFFBEB', // Fondo crema muy claro
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para el desplazamiento suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilo para el menú pegajoso y sombra */
+        #navbar {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 75%;
+            height: 3px;
+            background-color: theme('colors.primary-color');
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-bg-light text-gray-800 font-sans">
+
+    <!-- Navbar/Viñeta de Navegación -->
+    <nav id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo (Móvil/Desktop) -->
+                <div class="flex-shrink-0">
+                    <a href="#inicio" class="text-2xl font-bold text-primary-color hover:text-secondary-color transition duration-300">
+                        [TU RESTAURANTE]
+                    </a>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-4">
+                    <a href="#inicio" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Inicio</a>
+                    <a href="#presentacion" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Presentación</a>
+                    <a href="#productos" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Productos</a>
+                    <a href="#ubicacion" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Ubicación</a>
+                    <a href="#trabajo" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Trabajo</a>
+                    <a href="#redes-sociales" class="nav-link bg-primary-color text-white hover:bg-secondary-color px-3 py-2 rounded-lg text-sm font-medium transition duration-300">Contacto</a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-primary-color focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition duration-300">
+                        <!-- Icono SVG de menú (ejemplo: tres líneas) -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil (desplegable) -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
+                <a href="#inicio" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Inicio</a>
+                <a href="#presentacion" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Presentación</a>
+                <a href="#productos" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Productos</a>
+                <a href="#ubicacion" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Ubicación</a>
+                <a href="#trabajo" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Contacto para Trabajo</a>
+                <a href="#redes-sociales" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Redes Sociales</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- 1. Sección: Inicio -->
+        <section id="inicio" class="pt-16 pb-10 flex flex-col items-center justify-center text-center bg-white shadow-inner">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <!-- Espacio para el Logo -->
+                <div class="mb-8">
+                    <img src="https://placehold.co/200x200/A34F0C/ffffff?text=Logo+Aqui" alt="Logo del Restaurante" class="h-40 w-40 mx-auto rounded-full object-cover border-4 border-primary-color shadow-lg">
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                    <span class="text-primary-color">Sabor</span> y Tradición en Cada Plato
+                </h1>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    Tu destino favorito para la mejor comida local. ¡Descubre nuestro menú!
+                </p>
+                <a href="#productos" class="mt-8 inline-block bg-secondary-color text-white text-lg font-semibold py-3 px-8 rounded-xl hover:bg-primary-color transition duration-300 transform hover:scale-105 shadow-xl">
+                    Ver Menú Completo
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Sección: Presentación (Video) -->
+        <section id="presentacion" class="py-16 bg-bg-light">
+            <div class="max-w-5xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title mx-auto">Nuestra Presentación</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Conoce la pasión y el ambiente que hacen de nuestro restaurante un lugar único.
+                </p>
+                <!-- Espacio para Video de Presentación (YouTube, Vimeo, etc.) -->
+                <!-- Importante: Usa el código 'iframe' de compartir para incrustar el video -->
+                <div class="aspect-w-16 aspect-h-9 w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                    <iframe 
+                        class="w-full h-96" 
+                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        title="Video de Presentación del Restaurante"
+                    ></iframe>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                    *Reemplaza "YOUR_VIDEO_ID" con el ID de tu video de YouTube o el código de tu plataforma preferida.
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección: Productos -->
+        <section id="productos" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-12 text-gray-900 section-title">Nuestros Productos Estrella</h2>
+
+                <!-- Contenedor de Productos (Grid Responsivo) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Producto 1: Título del Producto -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-primary-color">
+                        <img src="https://placehold.co/600x400/A34F0C/ffffff?text=Plato+Principal+1" alt="Plato Principal 1" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-primary-color mb-2">Lomo Saltado Clásico</h3>
+                            <p class="text-gray-600 mb-4 text-sm">El plato peruano que nos define: jugoso lomo de res salteado con cebolla, tomate y un toque de salsa de soya.</p>
+                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 35.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2: Postre -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-secondary-color">
+                        <img src="https://placehold.co/600x400/0C83A3/ffffff?text=Postre+Delicioso" alt="Postre Delicioso" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-secondary-color mb-2">Torta de Chocolate Fudge</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Capas de bizcocho húmedo y la crema más densa de chocolate amargo. El final perfecto.</p>
+                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 18.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3: Bebida -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-primary-color">
+                        <img src="https://placehold.co/600x400/A34F0C/ffffff?text=Bebida+Refrescante" alt="Bebida Refrescante" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-primary-color mb-2">Chicha Morada Artesanal</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Bebida tradicional peruana a base de maíz morado, piña y especias. Natural y refrescante.</p>
+                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 8.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Puedes añadir más productos aquí, siguiendo el mismo formato -->
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Sección: Ubicación del Local -->
+        <section id="ubicacion" class="py-16 bg-bg-light">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title">¿Dónde Encontrarnos?</h2>
+                <div class="lg:flex lg:space-x-10">
+                    <!-- Mapa Placeholder (Usar Google Maps Embed) -->
+                    <div class="lg:w-2/3 h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-white mb-8 lg:mb-0">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15606.32290680909!2d-77.03756041315848!3d-12.046373752535794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c5f4929c4a79%3A0x6e9f1a26d7f9996!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses-419!2spe!4v1660144506300!5m2!1ses-419!2spe" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa de Ubicación del Restaurante"
+                        ></iframe>
+                    </div>
+                    
+                    <!-- Información de Contacto Rápido -->
+                    <div class="lg:w-1/3 p-6 bg-white rounded-xl shadow-lg border-l-4 border-secondary-color">
+                        <h3 class="text-2xl font-semibold text-secondary-color mb-4">Detalles de la Dirección</h3>
+                        <p class="text-gray-700 mb-3">
+                            <span class="font-bold">Dirección:</span> Av. Principal 123, Distrito Central, Lima 15001.
+                        </p>
+                        <p class="text-gray-700 mb-3">
+                            <span class="font-bold">Horario:</span> Lun - Sáb: 12:00 PM - 10:00 PM.
+                        </p>
+                        <p class="text-gray-700">
+                            <span class="font-bold">Teléfono:</span> +51 987 654 321
+                        </p>
+
+                        <a href="https://goo.gl/maps/EXAMPLE" target="_blank" class="mt-6 inline-block bg-primary-color text-white text-md font-semibold py-2 px-6 rounded-lg hover:bg-secondary-color transition duration-300">
+                            Abrir en Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Sección: Contacto para Trabajo -->
+        <section id="trabajo" class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title mx-auto">Únete a Nuestro Equipo</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    ¿Eres apasionado por la gastronomía y buscas un nuevo reto? ¡Queremos conocerte!
+                </p>
+
+                <!-- Tarjeta de Contacto para Empleo -->
+                <div class="p-8 bg-bg-light rounded-xl shadow-xl border-t-8 border-accent-color">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">Postula Hoy</h3>
+                    <p class="text-gray-600 mb-6">Envíanos tu Currículum Vitae y una breve carta de presentación a la siguiente dirección de correo electrónico:</p>
+                    <a href="mailto:trabajo@[tudominio].com" class="text-2xl font-extrabold text-secondary-color hover:text-primary-color transition duration-300 break-words">
+                        trabajo@[tudominio].com
+                    </a>
+                    <p class="mt-4 text-sm text-gray-500">*No olvides especificar el puesto al que aplicas (ej: Cocinero, Mesero, Ayudante de Cocina).</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 6. Sección: Redes Sociales (Footer) -->
+    <footer id="redes-sociales" class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold mb-6 text-accent-color">Síguenos y Contacta</h3>
+
+            <!-- Redes Sociales (Iconos) -->
+            <div class="flex justify-center space-x-6 mb-8">
+                <!-- Icono de Facebook -->
+                <a href="https://facebook.com/[tuperfil]" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300 transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.54 0-2.5 2.5-2.5H18V.91c-.48-.07-1.74-.15-3.32-.15C11.66.76 10 2.37 10 5.67V9.5H7.5v4H10V22h4v-8.5z"/></svg>
+                </a>
+                <!-- Icono de Instagram -->
+                <a href="https://instagram.com/[tuperfil]" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.851.07A6.802 6.802 0 0 1 21.364 5.34a6.801 6.801 0 0 1 3.167 3.298c.057 1.267.07 1.647.07 4.851 0 3.204-.013 3.584-.07 4.851a6.802 6.802 0 0 1-3.298 3.167 6.801 6.801 0 0 1-3.298.057c-1.267-.057-1.647-.07-4.851-.07-3.204 0-3.584.013-4.851.07a6.802 6.802 0 0 1-3.298-3.167 6.801 6.801 0 0 1-.057-3.298c0-3.204.013-3.584.07-4.851a6.802 6.802 0 0 1 3.298-3.167 6.801 6.801 0 0 1 3.298-.057c1.267.057 1.647.07 4.851.07zm0 3.82c-3.465 0-4.085.012-5.464.067-1.378.053-2.302.56-3.136 1.394-1.396 1.396-1.396 3.662 0 5.058l.19.183c.834.834 1.758 1.341 3.136 1.394 1.379.055 2.019.067 5.464.067 3.445 0 4.085-.012 5.464-.067 1.378-.053 2.302-.56 3.136-1.394 1.396-1.396 1.396-3.662 0-5.058l-.19-.183c-.834-.834-1.758-1.341-3.136-1.394-1.379-.055-2.019-.067-5.464-.067zm0 2.296c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zM12 9.296c-1.492 0-2.704 1.212-2.704 2.704s1.212 2.704 2.704 2.704 2.704-1.212 2.704-2.704-1.212-2.704-2.704-2.704zm6.837-2.365c.783 0 1.417.634 1.417 1.417s-.634 1.417-1.417 1.417-1.417-.634-1.417-1.417.634-1.417 1.417-1.417z"/></svg>
+                </a>
+                <!-- Icono de WhatsApp -->
+                <a href="https://wa.me/51987654321" target="_blank" class="text-gray-400 hover:text-green-500 transition duration-300 transform hover:scale-110">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.039 2.001A9.957 9.957 0 0 0 2 12.001c0 2.923 1.144 5.642 3.18 7.68l-2.18 2.181 3.181-.828a10.02 10.02 0 0 0 6.858 2.508h.001c5.522 0 10.001-4.479 10.001-10.001S17.561 2.001 12.039 2.001zM17 16.5c-.27-.134-1.587-.783-1.834-.873-.247-.09-.427-.134-.607.134-.18.271-.7 1.246-.856 1.397-.156.151-.312.169-.58.034-.27-.134-1.127-.417-2.14-1.321-.796-.708-1.332-1.583-1.49-1.854-.158-.271-.017-.251.118-.385.122-.12.27-.306.405-.461.134-.156.179-.271.27-.468.09-.196.045-.376-.022-.532-.067-.156-.607-1.458-.839-1.996-.231-.538-.468-.465-.607-.469-.126-.004-.271-.004-.427-.004s-.405.045-.607.306c-.202.271-.77 1.054-.77 2.556 0 1.503.784 2.955.895 3.123.111.168 1.547 2.378 3.753 3.255 2.206.877 2.206.586 2.597.553.391-.033 1.587-.647 1.834-1.284.247-.636.247-.134.168-.288z"/></svg>
+                </a>
+            </div>
+
+            <!-- Información de Contacto -->
+            <div class="space-y-2 text-gray-400 mb-8">
+                <p>
+                    <span class="font-semibold text-white">Correo Electrónico:</span> 
+                    <a href="mailto:contacto@[tudominio].com" class="hover:text-primary-color transition duration-300">contacto@[tudominio].com</a>
+                </p>
+                <p>
+                    <span class="font-semibold text-white">Teléfono de Pedidos:</span> 
+                    <a href="tel:+51987654321" class="hover:text-primary-color transition duration-300">+51 987 654 321</a>
+                </p>
+            </div>
+
+            <p class="text-sm text-gray-500 mt-8">
+                &copy; <span id="year"></span> [Tu Restaurante]. Todos los derechos reservados. | Desarrollado en tu Dominio Descentralizado.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para el Menú Móvil y el Desplazamiento Suave -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // 1. Alternar Menú Móvil
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 2. Cerrar Menú Móvil después de hacer clic en un enlace (para móviles)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Cierra el menú móvil si está visible
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    // Implementación nativa de desplazamiento suave (scroll-behavior: smooth en CSS)
+                    // Si deseas forzar el comportamiento, puedes usar:
+                    // const targetId = link.getAttribute('href').substring(1);
+                    // document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // 3. Establecer el año actual en el footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html>
