@@ -1,324 +1,618 @@
-PAGINA WEB PARA ZZUMOS MODELO:
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Digital - [Nombre de tu Restaurante]</title>
-    <!-- Carga de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configuración de Tailwind para usar la fuente Inter y un esquema de colores personalizado -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-color': '#A34F0C', // Color principal (Marrón cálido, tipo pan)
-                        'secondary-color': '#0C83A3', // Color secundario (Azul fresco, tipo agua/frescura)
-                        'accent-color': '#FDE047', // Color de acento (Amarillo, tipo brillo/energía)
-                        'bg-light': '#FFFBEB', // Fondo crema muy claro
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zzumos — Juguería & Sabores Peruanos</title>
+  <meta name="description" content="Zzumos: juguería en Ica con jugos naturales y entradas peruanas (causa, papa rellena y más). Página demostrativa lista para editar." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Config rápido para extender colores de marca (fucsia, lima, naranja y negro)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            marca: {
+              fucsia: '#D946EF', // fuchsia-500 aprox
+              lima:   '#A3E635', // lime-400 aprox
+              naranja:'#FB923C', // orange-400 aprox
+              negro:  '#0B0B0C'
             }
+          },
+          fontFamily: {
+            inter: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"]
+          },
+          boxShadow: {
+            sutil: '0 10px 30px rgba(0,0,0,.08)'
+          }
         }
-    </script>
-    <style>
-        /* Estilos personalizados para el desplazamiento suave */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Estilo para el menú pegajoso y sombra */
-        #navbar {
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 75%;
-            height: 3px;
-            background-color: theme('colors.primary-color');
-            border-radius: 9999px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Pequeñas mejoras visuales */
+    html { scroll-behavior: smooth; }
+    .glass { backdrop-filter: blur(10px); background: rgb(255 255 255 / .06); }
+    .linea-grad { background: linear-gradient(90deg, #D946EF, #A3E635, #FB923C); height: 3px; }
+    .blob { filter: blur(36px); opacity:.45; }
+
+    /* Animaciones mejoradas */
+    .reveal { opacity:0; transition: transform .7s ease, opacity .7s ease; will-change: transform, opacity; }
+    .reveal[data-anim="up"]{ transform: translateY(16px); }
+    .reveal[data-anim="left"]{ transform: translateX(-16px); }
+    .reveal[data-anim="right"]{ transform: translateX(16px); }
+    .reveal:not([data-anim]){ transform: translateY(14px); }
+    .reveal.visible { transform: translate(0,0); opacity: 1; }
+
+    /* Modo claro: corrige contraste de textos, fondos y bordes */
+    body.theme-light { background:#FAFAFA; color:#0B0B0C; }
+    body.theme-light .glass { background: rgb(255 255 255 / .65); }
+    body.theme-light header { background: rgb(255 255 255 / .75); }
+    body.theme-light .text-white{ color:#0B0B0C !important; }
+    body.theme-light .text-white\/80{ color:rgba(12,12,12,.82) !important; }
+    body.theme-light .text-white\/70{ color:rgba(12,12,12,.70) !important; }
+    body.theme-light .text-white\/60{ color:rgba(12,12,12,.60) !important; }
+    body.theme-light .bg-white\/5{ background: rgba(0,0,0,.04) !important; }
+    body.theme-light .bg-neutral-900\/80{ background: #FFFFFF !important; color:#0B0B0C !important; }
+    body.theme-light .border-white\/10{ border-color: rgba(0,0,0,.12) !important; }
+    body.theme-light .ring-white\/10{ --tw-ring-color: rgba(0,0,0,.12) !important; }
+    body.theme-light .hover\:bg-white\/10:hover{ background: rgba(0,0,0,.06) !important; }
+
+    /* Modal admin demo */
+    .modal{ position: fixed; inset:0; background: rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:70; }
+    .modal.open{ display:flex; }
+    .card{ background: #0B0B0C; border:1px solid rgba(255,255,255,.08); border-radius: 1rem; max-width: 900px; width: 92vw; max-height: 80vh; overflow: hidden; }
+    .card header{ display:flex; align-items:center; justify-content:space-between; padding: 12px 16px; border-bottom:1px solid rgba(255,255,255,.08); }
+    .card .body{ padding: 12px 16px; overflow:auto; }
+    body.theme-light .card{ background:#fff; border-color: rgba(0,0,0,.12); }
+    body.theme-light .card header{ border-color: rgba(0,0,0,.12); }
+
+    /* Toast simple */
+    .toast{ position: fixed; bottom: 18px; left:50%; transform: translateX(-50%); background:#111827; color:#fff; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); opacity:0; transition: opacity .25s ease; z-index:80; }
+    .toast.show{ opacity:1; }
+    body.theme-light .toast{ background:#111; color:#fff; }
+  </style>
 </head>
-<body class="bg-bg-light text-gray-800 font-sans">
+<body class="bg-neutral-950 text-white font-inter">
+  <!-- Decoración de fondo -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full blob" style="background:#D946EF"></div>
+    <div class="absolute top-40 -right-16 w-96 h-96 rounded-full blob" style="background:#A3E635"></div>
+    <div class="absolute -bottom-24 left-1/3 w-96 h-96 rounded-full blob" style="background:#FB923C"></div>
+  </div>
 
-    <!-- Navbar/Viñeta de Navegación -->
-    <nav id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo (Móvil/Desktop) -->
-                <div class="flex-shrink-0">
-                    <a href="#inicio" class="text-2xl font-bold text-primary-color hover:text-secondary-color transition duration-300">
-                        [TU RESTAURANTE]
-                    </a>
-                </div>
-
-                <!-- Menú Desktop -->
-                <div class="hidden md:flex space-x-4">
-                    <a href="#inicio" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Inicio</a>
-                    <a href="#presentacion" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Presentación</a>
-                    <a href="#productos" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Productos</a>
-                    <a href="#ubicacion" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Ubicación</a>
-                    <a href="#trabajo" class="nav-link text-gray-600 hover:text-primary-color px-3 py-2 rounded-md text-sm font-medium transition duration-300">Trabajo</a>
-                    <a href="#redes-sociales" class="nav-link bg-primary-color text-white hover:bg-secondary-color px-3 py-2 rounded-lg text-sm font-medium transition duration-300">Contacto</a>
-                </div>
-
-                <!-- Botón Menú Móvil -->
-                <div class="-mr-2 flex md:hidden">
-                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-primary-color focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition duration-300">
-                        <!-- Icono SVG de menú (ejemplo: tres líneas) -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+  <!-- Barra superior -->
+  <header class="sticky top-0 z-40 bg-neutral-950/70 glass border-b border-white/5">
+    <div class="linea-grad"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-4">
+        <a href="#" class="flex items-center gap-2 group">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-marca.fucsia/20 ring-1 ring-white/10">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </span>
+          <span class="text-lg font-extrabold tracking-tight">Z<span class="text-marca.fucsia">zumos</span></span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+          <a href="#beneficios" class="hover:text-white">Carta</a>
+          <a href="#productos" class="hover:text-white">Jugos</a>
+          <a href="#ubicacion" class="hover:text-white">Ubicación</a>
+          <a href="#contacto" class="hover:text-white">Contacto</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="modoBtn" class="px-3 py-2 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">
+            <i data-lucide="moon" class="w-4 h-4"></i>
+          </button>
+          <a href="#precios" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja text-sm font-semibold shadow-sutil hover:opacity-95 transition">Empieza ahora</a>
+          <button class="md:hidden px-3 py-2 rounded-xl bg-white/5 ring-1 ring-white/10" id="openMenu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
         </div>
+      </div>
+    </div>
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/5">
+      <div class="px-4 py-3 space-y-2 bg-neutral-900/80">
+        <a href="#beneficios" class="block px-3 py-2 rounded-lg hover:bg-white/5">Beneficios</a>
+        <a href="#productos" class="block px-3 py-2 rounded-lg hover:bg-white/5">Productos</a>
+        <a href="#precios" class="block px-3 py-2 rounded-lg hover:bg-white/5">Precios</a>
+        <a href="#contacto" class="block px-3 py-2 rounded-lg hover:bg-white/5">Contacto</a>
+      </div>
+    </div>
+  </header>
 
-        <!-- Menú Móvil (desplegable) -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-100">
-                <a href="#inicio" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Inicio</a>
-                <a href="#presentacion" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Presentación</a>
-                <a href="#productos" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Productos</a>
-                <a href="#ubicacion" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Ubicación</a>
-                <a href="#trabajo" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Contacto para Trabajo</a>
-                <a href="#redes-sociales" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-bg-light hover:text-primary-color">Redes Sociales</a>
-            </div>
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
+          <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
+            <span class="w-1.5 h-1.5 rounded-full" style="background:#A3E635"></span>
+            Demostración 2025
+          </span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+            Zzumos: jugos naturales y entradas peruanas 🥤🥟.
+          </h1>
+          <p class="mt-5 text-white/80 text-lg max-w-xl">Local demostrativo en Ica. Prueba visual del sitio para una juguería con platos como <strong>causa rellena</strong> y <strong>papa rellena</strong>. Personaliza textos e imágenes a tu gusto.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#precios" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold shadow-sutil hover:opacity-95">Comenzar</a>
+            <a href="#productos" class="px-5 py-3 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10">Ver características</a>
+          </div>
+          <div class="mt-6 flex items-center gap-4 text-sm text-white/60">
+            <div class="inline-flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i>Garantía de satisfacción</div>
+            <div class="inline-flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i>Implementación rápida</div>
+          </div>
         </div>
-    </nav>
-
-    <main>
-        <!-- 1. Sección: Inicio -->
-        <section id="inicio" class="pt-16 pb-10 flex flex-col items-center justify-center text-center bg-white shadow-inner">
-            <div class="max-w-7xl mx-auto px-4 py-8">
-                <!-- Espacio para el Logo -->
-                <div class="mb-8">
-                    <img src="https://placehold.co/200x200/A34F0C/ffffff?text=Logo+Aqui" alt="Logo del Restaurante" class="h-40 w-40 mx-auto rounded-full object-cover border-4 border-primary-color shadow-lg">
+        <div class="reveal">
+          <div class="relative">
+            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-marca.fucsia/30 via-marca.lima/20 to-marca.naranja/30 blur-2xl"></div>
+            <div class="relative bg-neutral-900/60 glass rounded-3xl ring-1 ring-white/10 p-5 shadow-sutil">
+              <div class="aspect-[16/10] rounded-2xl bg-neutral-950 border border-white/10 overflow-hidden">
+                <!-- Mockup simple -->
+                <div class="h-10 bg-neutral-900/70 flex items-center gap-1 px-3 border-b border-white/10">
+                  <span class="w-3 h-3 rounded-full bg-marca.naranja"></span>
+                  <span class="w-3 h-3 rounded-full bg-marca.lima"></span>
+                  <span class="w-3 h-3 rounded-full bg-marca.fucsia"></span>
+                  <span class="ml-3 text-xs text-white/60">demo.tumarca.com</span>
                 </div>
-                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-                    <span class="text-primary-color">Sabor</span> y Tradición en Cada Plato
-                </h1>
-                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-                    Tu destino favorito para la mejor comida local. ¡Descubre nuestro menú!
-                </p>
-                <a href="#productos" class="mt-8 inline-block bg-secondary-color text-white text-lg font-semibold py-3 px-8 rounded-xl hover:bg-primary-color transition duration-300 transform hover:scale-105 shadow-xl">
-                    Ver Menú Completo
-                </a>
-            </div>
-        </section>
-
-        <!-- 2. Sección: Presentación (Video) -->
-        <section id="presentacion" class="py-16 bg-bg-light">
-            <div class="max-w-5xl mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title mx-auto">Nuestra Presentación</h2>
-                <p class="text-lg text-gray-600 mb-8">
-                    Conoce la pasión y el ambiente que hacen de nuestro restaurante un lugar único.
-                </p>
-                <!-- Espacio para Video de Presentación (YouTube, Vimeo, etc.) -->
-                <!-- Importante: Usa el código 'iframe' de compartir para incrustar el video -->
-                <div class="aspect-w-16 aspect-h-9 w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                    <iframe 
-                        class="w-full h-96" 
-                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        title="Video de Presentación del Restaurante"
-                    ></iframe>
+                <div class="p-6 grid gap-4 sm:grid-cols-2">
+                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="rocket" class="w-4 h-4"></i>Lanzamiento veloz</div>
+                    <p class="mt-2 text-sm text-white/80">HTML puro con Tailwind, sin build tools.</p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="mouse-pointer-click" class="w-4 h-4"></i>Interacciones suaves</div>
+                    <p class="mt-2 text-sm text-white/80">Animaciones por IntersectionObserver.</p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="palette" class="w-4 h-4"></i>Colores de marca</div>
+                    <p class="mt-2 text-sm text-white/80">Fucsia, lima, naranja y negro.</p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="wand-2" class="w-4 h-4"></i>Estética glass</div>
+                    <p class="mt-2 text-sm text-white/80">Fondos blur y sombras sutiles.</p>
+                  </div>
                 </div>
-                <div class="mt-4 text-sm text-gray-500">
-                    *Reemplaza "YOUR_VIDEO_ID" con el ID de tu video de YouTube o el código de tu plataforma preferida.
-                </div>
+              </div>
             </div>
-        </section>
-
-        <!-- 3. Sección: Productos -->
-        <section id="productos" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-4xl font-bold mb-12 text-gray-900 section-title">Nuestros Productos Estrella</h2>
-
-                <!-- Contenedor de Productos (Grid Responsivo) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- Producto 1: Título del Producto -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-primary-color">
-                        <img src="https://placehold.co/600x400/A34F0C/ffffff?text=Plato+Principal+1" alt="Plato Principal 1" class="w-full h-56 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-primary-color mb-2">Lomo Saltado Clásico</h3>
-                            <p class="text-gray-600 mb-4 text-sm">El plato peruano que nos define: jugoso lomo de res salteado con cebolla, tomate y un toque de salsa de soya.</p>
-                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 35.00</span>
-                        </div>
-                    </div>
-
-                    <!-- Producto 2: Postre -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-secondary-color">
-                        <img src="https://placehold.co/600x400/0C83A3/ffffff?text=Postre+Delicioso" alt="Postre Delicioso" class="w-full h-56 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-secondary-color mb-2">Torta de Chocolate Fudge</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Capas de bizcocho húmedo y la crema más densa de chocolate amargo. El final perfecto.</p>
-                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 18.00</span>
-                        </div>
-                    </div>
-
-                    <!-- Producto 3: Bebida -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 border-t-8 border-primary-color">
-                        <img src="https://placehold.co/600x400/A34F0C/ffffff?text=Bebida+Refrescante" alt="Bebida Refrescante" class="w-full h-56 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-primary-color mb-2">Chicha Morada Artesanal</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Bebida tradicional peruana a base de maíz morado, piña y especias. Natural y refrescante.</p>
-                            <span class="inline-block bg-accent-color text-gray-900 text-lg font-bold px-3 py-1 rounded-full">S/ 8.00</span>
-                        </div>
-                    </div>
-
-                    <!-- Puedes añadir más productos aquí, siguiendo el mismo formato -->
-
-                </div>
-            </div>
-        </section>
-        
-        <!-- 4. Sección: Ubicación del Local -->
-        <section id="ubicacion" class="py-16 bg-bg-light">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title">¿Dónde Encontrarnos?</h2>
-                <div class="lg:flex lg:space-x-10">
-                    <!-- Mapa Placeholder (Usar Google Maps Embed) -->
-                    <div class="lg:w-2/3 h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-white mb-8 lg:mb-0">
-                        <iframe 
-                            class="w-full h-full" 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15606.32290680909!2d-77.03756041315848!3d-12.046373752535794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c5f4929c4a79%3A0x6e9f1a26d7f9996!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses-419!2spe!4v1660144506300!5m2!1ses-419!2spe" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Mapa de Ubicación del Restaurante"
-                        ></iframe>
-                    </div>
-                    
-                    <!-- Información de Contacto Rápido -->
-                    <div class="lg:w-1/3 p-6 bg-white rounded-xl shadow-lg border-l-4 border-secondary-color">
-                        <h3 class="text-2xl font-semibold text-secondary-color mb-4">Detalles de la Dirección</h3>
-                        <p class="text-gray-700 mb-3">
-                            <span class="font-bold">Dirección:</span> Av. Principal 123, Distrito Central, Lima 15001.
-                        </p>
-                        <p class="text-gray-700 mb-3">
-                            <span class="font-bold">Horario:</span> Lun - Sáb: 12:00 PM - 10:00 PM.
-                        </p>
-                        <p class="text-gray-700">
-                            <span class="font-bold">Teléfono:</span> +51 987 654 321
-                        </p>
-
-                        <a href="https://goo.gl/maps/EXAMPLE" target="_blank" class="mt-6 inline-block bg-primary-color text-white text-md font-semibold py-2 px-6 rounded-lg hover:bg-secondary-color transition duration-300">
-                            Abrir en Google Maps
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Sección: Contacto para Trabajo -->
-        <section id="trabajo" class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold mb-10 text-gray-900 section-title mx-auto">Únete a Nuestro Equipo</h2>
-                <p class="text-xl text-gray-600 mb-8">
-                    ¿Eres apasionado por la gastronomía y buscas un nuevo reto? ¡Queremos conocerte!
-                </p>
-
-                <!-- Tarjeta de Contacto para Empleo -->
-                <div class="p-8 bg-bg-light rounded-xl shadow-xl border-t-8 border-accent-color">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-4">Postula Hoy</h3>
-                    <p class="text-gray-600 mb-6">Envíanos tu Currículum Vitae y una breve carta de presentación a la siguiente dirección de correo electrónico:</p>
-                    <a href="mailto:trabajo@[tudominio].com" class="text-2xl font-extrabold text-secondary-color hover:text-primary-color transition duration-300 break-words">
-                        trabajo@[tudominio].com
-                    </a>
-                    <p class="mt-4 text-sm text-gray-500">*No olvides especificar el puesto al que aplicas (ej: Cocinero, Mesero, Ayudante de Cocina).</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- 6. Sección: Redes Sociales (Footer) -->
-    <footer id="redes-sociales" class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-6 text-accent-color">Síguenos y Contacta</h3>
-
-            <!-- Redes Sociales (Iconos) -->
-            <div class="flex justify-center space-x-6 mb-8">
-                <!-- Icono de Facebook -->
-                <a href="https://facebook.com/[tuperfil]" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.54 0-2.5 2.5-2.5H18V.91c-.48-.07-1.74-.15-3.32-.15C11.66.76 10 2.37 10 5.67V9.5H7.5v4H10V22h4v-8.5z"/></svg>
-                </a>
-                <!-- Icono de Instagram -->
-                <a href="https://instagram.com/[tuperfil]" target="_blank" class="text-gray-400 hover:text-pink-500 transition duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.851.07A6.802 6.802 0 0 1 21.364 5.34a6.801 6.801 0 0 1 3.167 3.298c.057 1.267.07 1.647.07 4.851 0 3.204-.013 3.584-.07 4.851a6.802 6.802 0 0 1-3.298 3.167 6.801 6.801 0 0 1-3.298.057c-1.267-.057-1.647-.07-4.851-.07-3.204 0-3.584.013-4.851.07a6.802 6.802 0 0 1-3.298-3.167 6.801 6.801 0 0 1-.057-3.298c0-3.204.013-3.584.07-4.851a6.802 6.802 0 0 1 3.298-3.167 6.801 6.801 0 0 1 3.298-.057c1.267.057 1.647.07 4.851.07zm0 3.82c-3.465 0-4.085.012-5.464.067-1.378.053-2.302.56-3.136 1.394-1.396 1.396-1.396 3.662 0 5.058l.19.183c.834.834 1.758 1.341 3.136 1.394 1.379.055 2.019.067 5.464.067 3.445 0 4.085-.012 5.464-.067 1.378-.053 2.302-.56 3.136-1.394 1.396-1.396 1.396-3.662 0-5.058l-.19-.183c-.834-.834-1.758-1.341-3.136-1.394-1.379-.055-2.019-.067-5.464-.067zm0 2.296c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zM12 9.296c-1.492 0-2.704 1.212-2.704 2.704s1.212 2.704 2.704 2.704 2.704-1.212 2.704-2.704-1.212-2.704-2.704-2.704zm6.837-2.365c.783 0 1.417.634 1.417 1.417s-.634 1.417-1.417 1.417-1.417-.634-1.417-1.417.634-1.417 1.417-1.417z"/></svg>
-                </a>
-                <!-- Icono de WhatsApp -->
-                <a href="https://wa.me/51987654321" target="_blank" class="text-gray-400 hover:text-green-500 transition duration-300 transform hover:scale-110">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.039 2.001A9.957 9.957 0 0 0 2 12.001c0 2.923 1.144 5.642 3.18 7.68l-2.18 2.181 3.181-.828a10.02 10.02 0 0 0 6.858 2.508h.001c5.522 0 10.001-4.479 10.001-10.001S17.561 2.001 12.039 2.001zM17 16.5c-.27-.134-1.587-.783-1.834-.873-.247-.09-.427-.134-.607.134-.18.271-.7 1.246-.856 1.397-.156.151-.312.169-.58.034-.27-.134-1.127-.417-2.14-1.321-.796-.708-1.332-1.583-1.49-1.854-.158-.271-.017-.251.118-.385.122-.12.27-.306.405-.461.134-.156.179-.271.27-.468.09-.196.045-.376-.022-.532-.067-.156-.607-1.458-.839-1.996-.231-.538-.468-.465-.607-.469-.126-.004-.271-.004-.427-.004s-.405.045-.607.306c-.202.271-.77 1.054-.77 2.556 0 1.503.784 2.955.895 3.123.111.168 1.547 2.378 3.753 3.255 2.206.877 2.206.586 2.597.553.391-.033 1.587-.647 1.834-1.284.247-.636.247-.134.168-.288z"/></svg>
-                </a>
-            </div>
-
-            <!-- Información de Contacto -->
-            <div class="space-y-2 text-gray-400 mb-8">
-                <p>
-                    <span class="font-semibold text-white">Correo Electrónico:</span> 
-                    <a href="mailto:contacto@[tudominio].com" class="hover:text-primary-color transition duration-300">contacto@[tudominio].com</a>
-                </p>
-                <p>
-                    <span class="font-semibold text-white">Teléfono de Pedidos:</span> 
-                    <a href="tel:+51987654321" class="hover:text-primary-color transition duration-300">+51 987 654 321</a>
-                </p>
-            </div>
-
-            <p class="text-sm text-gray-500 mt-8">
-                &copy; <span id="year"></span> [Tu Restaurante]. Todos los derechos reservados. | Desarrollado en tu Dominio Descentralizado.
-            </p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- JavaScript para el Menú Móvil y el Desplazamiento Suave -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelectorAll('.nav-link');
+  <!-- Beneficios -->
+  <section id="beneficios" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Todo lo que necesitas para brillar ✨</h2>
+        <p class="mt-3 text-white/80">Componentes listos: tarjetas, iconos, badges y CTA. Inspirado en SaaS/tienda moderna.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <div class="reveal p-6 rounded-2xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">
+          <div class="w-11 h-11 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
+            <i data-lucide="bolt" class="w-5 h-5"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Rápido y ligero</h3>
+          <p class="mt-1 text-white/70">Sin frameworks complejos. Copia/pega y publica.</p>
+        </div>
+        <div class="reveal p-6 rounded-2xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">
+          <div class="w-11 h-11 rounded-xl bg-marca.lima/20 flex items-center justify-center ring-1 ring-white/10">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Visual potente</h3>
+          <p class="mt-1 text-white/70">Gradientes, glassmorphism y blobs decorativos.</p>
+        </div>
+        <div class="reveal p-6 rounded-2xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">
+          <div class="w-11 h-11 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
+            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">100% editable</h3>
+          <p class="mt-1 text-white/70">Cambia textos, colores, secciones y listo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            // 1. Alternar Menú Móvil
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+  <!-- Productos / Características (Jugos destacados) -->
+  <section id="productos" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Jugos y entradas destacadas</h2>
+        <p class="mt-3 text-white/80">100% demostrativo. Coloca fotos reales luego.</p>
+      </div>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Jugo 1 -->
+        <article class="reveal group rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition" data-anim="up" data-delay="0">
+          <div class="aspect-[4/3] bg-gradient-to-br from-marca.fucsia/40 via-transparent to-marca.naranja/40"></div>
+          <div class="p-5">
+            <span class="inline-flex text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
+            <h3 class="mt-3 text-lg font-semibold">Fresa & Plátano</h3>
+            <p class="mt-1 text-white/70 text-sm">Refrescante y natural.</p>
+            <a href="#contacto" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold hover:underline">Pedir info <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+        <!-- Entrada 1 -->
+        <article class="reveal group rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition" data-anim="up" data-delay="100">
+          <div class="aspect-[4/3] bg-gradient-to-br from-marca.lima/40 via-transparent to-marca.fucsia/40"></div>
+          <div class="p-5">
+            <span class="inline-flex text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.lima/20 ring-1 ring-white/10">Entrada</span>
+            <h3 class="mt-3 text-lg font-semibold">Causa Rellena</h3>
+            <p class="mt-1 text-white/70 text-sm">Clásica, cremosa y deliciosa.</p>
+            <a href="#contacto" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold hover:underline">Pedir info <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+        <!-- Entrada 2 -->
+        <article class="reveal group rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition" data-anim="up" data-delay="200">
+          <div class="aspect-[4/3] bg-gradient-to-br from-marca.naranja/40 via-transparent to-marca.lima/40"></div>
+          <div class="p-5">
+            <span class="inline-flex text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
+            <h3 class="mt-3 text-lg font-semibold">Papa Rellena</h3>
+            <p class="mt-1 text-white/70 text-sm">Crocrante por fuera, jugosa por dentro.</p>
+            <a href="#contacto" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold hover:underline">Pedir info <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Precios -->
+  <section id="precios" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Planes simples</h2>
+        <p class="mt-3 text-white/80">Elige el plan que mejor se adapte a tu proyecto.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <!-- Básico -->
+        <div class="reveal rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <h3 class="text-lg font-semibold">Básico</h3>
+          <p class="mt-1 text-white/70 text-sm">Ideal para probar.</p>
+          <div class="mt-4 text-4xl font-extrabold">$9<span class="text-base font-semibold text-white/60">/mes</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/70">
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>1 página</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Soporte por email</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Actualizaciones</li>
+          </ul>
+          <a href="#contacto" class="mt-6 inline-flex justify-center w-full px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/10 hover:bg-white/15">Elegir</a>
+        </div>
+        <!-- Pro -->
+        <div class="reveal relative rounded-2xl bg-gradient-to-b from-marca.fucsia/15 to-transparent ring-1 ring-white/10 p-6">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia text-black font-bold">Recomendado</span>
+          <h3 class="text-lg font-semibold">Pro</h3>
+          <p class="mt-1 text-white/70 text-sm">Para negocios en crecimiento.</p>
+          <div class="mt-4 text-4xl font-extrabold">$19<span class="text-base font-semibold text-white/60">/mes</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/70">
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Hasta 5 páginas</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Soporte prioritario</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Integraciones básicas</li>
+          </ul>
+          <a href="#contacto" class="mt-6 inline-flex justify-center w-full px-4 py-2 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold">Elegir</a>
+        </div>
+        <!-- Empresa -->
+        <div class="reveal rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+          <h3 class="text-lg font-semibold">Empresa</h3>
+          <p class="mt-1 text-white/70 text-sm">Soporte y escalabilidad total.</p>
+          <div class="mt-4 text-4xl font-extrabold">$49<span class="text-base font-semibold text-white/60">/mes</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/70">
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Páginas ilimitadas</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>Integraciones avanzadas</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i>SLAs dedicados</li>
+          </ul>
+          <a href="#contacto" class="mt-6 inline-flex justify-center w-full px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/10 hover:bg-white/15">Elegir</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal grid md:grid-cols-3 gap-6">
+        <blockquote class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <p class="text-white/80">“Un diseño brutal, listo en una tarde.”</p>
+          <footer class="border-t border-white/10 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm">© <span id="year"></span> Zzumos. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-4 text-white/60">
+        <a href="#" class="hover:text-white">Privacidad</a>
+        <a href="#" class="hover:text-white">Términos</a>
+        <a href="#" id="openAdmin" class="inline-flex items-center gap-1 hover:text-white"><i data-lucide="lock" class="w-4 h-4"></i>Admin (demo)</a>
+        <a href="#" class="inline-flex items-center gap-1 hover:text-white"><i data-lucide="instagram" class="w-4 h-4"></i>Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Admin (demo localStorage) -->
+  <div id="adminModal" class="modal" aria-hidden="true">
+    <div class="card">
+      <header>
+        <strong>Mensajes recibidos (demo local)</strong>
+        <div class="flex items-center gap-2">
+          <button id="exportBtn" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Exportar JSON</button>
+          <button id="clearBtn" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Borrar todo</button>
+          <button id="closeAdmin" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Cerrar</button>
+        </div>
+      </header>
+      <div class="body">
+        <table class="w-full text-sm">
+          <thead class="text-white/70">
+            <tr>
+              <th class="text-left p-2">Fecha</th>
+              <th class="text-left p-2">Nombre</th>
+              <th class="text-left p-2">Email</th>
+              <th class="text-left p-2">Mensaje</th>
+            </tr>
+          </thead>
+          <tbody id="adminTable" class="align-top"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        </blockquote>
+        <blockquote class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <p class="text-white/80">“Subí el HTML y empecé a vender.”</p>
+          <footer class="mt-3 text-white/60 text-sm">— Luis, Emprendedor</footer>
+        </blockquote>
+        <blockquote class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
+          <p class="text-white/80">“Fácil de personalizar y escalar.”</p>
+          <footer class="mt-3 text-white/60 text-sm">— Carla, Marketing</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="reveal" data-anim="left">
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Contáctanos</h2>
+          <p class="mt-3 text-white/80">Página demostrativa. Escríbenos para pedidos o consultas.</p>
+          <ul class="mt-6 space-y-3 text-white/80">
+            <li class="inline-flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i>+51 965 868 449</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i><a class="underline hover:no-underline" href="mailto:zzumoscv@gmail.com?subject=Postulaci%C3%B3n%20laboral%20-%20Zzumos&body=Hola%20Zzumos%2C%0A%0AQuiero%20postular%20a%20trabajar%20con%20ustedes.%20Adjunto%20mi%20CV%20y%20datos%20de%20contacto.%0A%0ANombre%3A%0ATel%C3%A9fono%3A%0APuesto%20de%20inter%C3%A9s%3A%0A%0AGracias!">zzumoscv@gmail.com</a> — envía tu CV aquí para postular.</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i>Ica, Perú</li>
+          </ul>
+          <div class="mt-6 flex gap-3">
+            <a href="mailto:zzumoscv@gmail.com?subject=Postulaci%C3%B3n%20laboral%20-%20Zzumos&body=Hola%20Zzumos%2C%0A%0AQuiero%20postular%20a%20trabajar%20con%20ustedes.%20Adjunto%20mi%20CV.%0A%0AGracias!" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold">Postular</a>
+            <a href="tel:+51965868449" class="px-5 py-3 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10">Llamar</a>
+          </div>
+        </div>
+        <form id="contactForm" class="reveal grid gap-4 bg-white/5 ring-1 ring-white/10 rounded-2xl p-6" data-anim="right">
+          <div>
+            <label class="text-sm text-white/70" for="name">Nombre</label>
+            <input id="name" name="name" required type="text" placeholder="Tu nombre" class="mt-1 w-full px-4 py-2 rounded-xl bg-neutral-900/80 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-marca.fucsia" />
+          </div>
+          <div>
+            <label class="text-sm text-white/70" for="email">Email</label>
+            <input id="email" name="email" required type="email" placeholder="tu@email.com" class="mt-1 w-full px-4 py-2 rounded-xl bg-neutral-900/80 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-marca.fucsia" />
+          </div>
+          <div>
+            <label class="text-sm text-white/70" for="message">Mensaje</label>
+            <textarea id="message" name="message" required rows="4" placeholder="Cuéntanos tu pedido o consulta" class="mt-1 w-full px-4 py-2 rounded-xl bg-neutral-900/80 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-marca.fucsia"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde Zzumos" />
+          <button id="submitBtn" type="submit" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold">Enviar</button>
+          <p id="formStatus" class="text-sm text-white/70"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación / Mapa -->
+  <section id="ubicacion" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-extrabold">¿Dónde estamos?</h2>
+        <p class="mt-3 text-white/80">Plus code: <strong>W7R3+XP Ica</strong>. Haz clic para cargar el mapa.</p>
+      </div>
+      <div class="reveal mt-10 rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5" data-anim="up">
+        <!-- Click-to-activate Map: evitamos recargas del documento -->
+        <div id="mapHolder" class="aspect-[16/9] w-full flex items-center justify-center">
+          <button id="enableMap" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold m-6">Ver mapa</button>
+        </div>
+        <!-- Fallback link siempre visible -->
+        <div class="p-4 bg-white/5 border-t border-white/10 text-center text-sm text-white/80">
+          Si no se carga, abre <a class="underline" href="https://www.google.com/maps?q=W7R3%2BXP%20Ica" target="_blank" rel="noopener">Google Maps</a> en otra pestaña.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm">© <span id="year"></span> Zzumos. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-4 text-white/60">
+        <a href="#" class="hover:text-white">Privacidad</a>
+        <a href="#" class="hover:text-white">Términos</a>
+        <a href="#" class="inline-flex items-center gap-1 hover:text-white"><i data-lucide="instagram" class="w-4 h-4"></i>Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reemplazar iconos Lucide
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+    // Menú móvil
+    const openMenu = document.getElementById('openMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (openMenu) {
+      openMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Modo claro/oscuro simple (cambia fondo/texto)
+    const modoBtn = document.getElementById('modoBtn');
+    let dark = true;
+    if (modoBtn) {
+      modoBtn.addEventListener('click', () => {
+        dark = !dark;
+        document.body.classList.toggle('theme-light');
+      });
+    }
+
+    // Animación al hacer scroll (entra y sale; re-anima al subir o bajar)
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const el = e.target;
+        if (e.isIntersecting) {
+          const delay = parseInt(el.getAttribute('data-delay')||'0',10);
+          el.style.transitionDelay = delay+'ms';
+          el.classList.add('visible');
+        } else {
+          // remueve visible para permitir re-animación al volver a entrar
+          el.classList.remove('visible');
+          el.style.transitionDelay = '0ms';
+        }
+      })
+    }, { threshold: .15 });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Click-to-activate Map: insertamos el iframe despues del permiso
+    const btn = document.getElementById('enableMap');
+    const holder = document.getElementById('mapHolder');
+    if (btn && holder) {
+      btn.addEventListener('click', () => {
+        holder.innerHTML = '<iframe title="Mapa Zzumos" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=W7R3%2BXP%20Ica&output=embed"></iframe>';
+      });
+    }
+      // --- Envío real con Formspree (configurable) ---
+    // 1) Crea tu formulario en https://formspree.io/ y copia el ID.
+    // 2) Reemplaza 'XXXXXXXX' por tu ID real. Ejemplo: 'mgegbjzn'.
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/XXXXXXXX'; // TODO: reemplazar
+
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      if(!t) return;
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(()=> t.classList.remove('show'), 2200);
+    }
+
+    function saveLocal(msg){
+      // Guarda una copia local para el Admin (demo)
+      const key = 'zzumos_msgs';
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.unshift({...msg, createdAt: new Date().toISOString()});
+      localStorage.setItem(key, JSON.stringify(arr));
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        statusEl.textContent = '';
+        submitBtn.disabled = true; submitBtn.style.opacity = .7;
+        const fd = new FormData(form);
+        const payload = Object.fromEntries(fd.entries());
+
+        // Siempre guardamos una copia local (demo)
+        saveLocal(payload);
+
+        try {
+          if (FORMSPREE_ENDPOINT.includes('XXXXXXXX')) {
+            // Modo demo sin endpoint real
+            showToast('Guardado localmente (demo). Configura Formspree para envío real.');
+            statusEl.textContent = 'Guardado local (demo).';
+          } else {
+            const res = await fetch(FORMSPREE_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' },
+              body: fd
             });
+            if (res.ok) {
+              showToast('¡Enviado con éxito!');
+              statusEl.textContent = 'Gracias, te responderemos pronto.';
+              form.reset();
+            } else {
+              showToast('Error al enviar.');
+              statusEl.textContent = 'No se pudo enviar. Intenta más tarde.';
+            }
+          }
+        } catch (err){
+          console.error(err);
+          showToast('Error de red.');
+          statusEl.textContent = 'Error de red.';
+        } finally {
+          submitBtn.disabled = false; submitBtn.style.opacity = 1;
+          renderAdminTable();
+        }
+      });
+    }
 
-            // 2. Cerrar Menú Móvil después de hacer clic en un enlace (para móviles)
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    // Cierra el menú móvil si está visible
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                    // Implementación nativa de desplazamiento suave (scroll-behavior: smooth en CSS)
-                    // Si deseas forzar el comportamiento, puedes usar:
-                    // const targetId = link.getAttribute('href').substring(1);
-                    // document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
+    // --- Admin (demo con localStorage) ---
+    const adminModal = document.getElementById('adminModal');
+    const openAdmin = document.getElementById('openAdmin');
+    const closeAdmin = document.getElementById('closeAdmin');
+    const adminTable = document.getElementById('adminTable');
+    const exportBtn = document.getElementById('exportBtn');
+    const clearBtn = document.getElementById('clearBtn');
 
-            // 3. Establecer el año actual en el footer
-            document.getElementById('year').textContent = new Date().getFullYear();
-        });
-    </script>
+    function renderAdminTable(){
+      if(!adminTable) return;
+      const key = 'zzumos_msgs';
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      adminTable.innerHTML = arr.map(r => `
+        <tr>
+          <td class="p-2 whitespace-nowrap">${new Date(r.createdAt).toLocaleString()}</td>
+          <td class="p-2">${r.name || ''}</td>
+          <td class="p-2">${r.email || ''}</td>
+          <td class="p-2">${(r.message || '').replace(/</g,'&lt;')}</td>
+        </tr>
+      `).join('');
+    }
 
+    function download(filename, text) {
+      const el = document.createElement('a');
+      el.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+      el.setAttribute('download', filename);
+      el.style.display = 'none';
+      document.body.appendChild(el);
+      el.click();
+      document.body.removeChild(el);
+    }
+
+    if (openAdmin && adminModal) {
+      openAdmin.addEventListener('click', (e)=>{ e.preventDefault(); adminModal.classList.add('open'); renderAdminTable(); });
+    }
+    if (closeAdmin && adminModal) {
+      closeAdmin.addEventListener('click', ()=> adminModal.classList.remove('open'));
+      adminModal.addEventListener('click', (e)=>{ if(e.target === adminModal) adminModal.classList.remove('open'); });
+    }
+    if (exportBtn) {
+      exportBtn.addEventListener('click', ()=>{
+        const data = localStorage.getItem('zzumos_msgs') || '[]';
+        download('zzumos_mensajes.json', data);
+      });
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener('click', ()=>{
+        if (confirm('¿Borrar todos los mensajes locales (demo)?')){
+          localStorage.removeItem('zzumos_msgs');
+          renderAdminTable();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
+
+
