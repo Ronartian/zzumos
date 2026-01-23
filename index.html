@@ -77,9 +77,14 @@
     body.theme-light .card header{ border-color: rgba(0,0,0,.12); }
 
     /* Toast simple */
-    .toast{ position: fixed; bottom: 18px; left:50%; transform: translateX(-50%); background:#111827; color:#fff; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); opacity:0; transition: opacity .25s ease; z-index:80; }
+    .toast{ position: fixed; bottom: 18px; left:50%; transform: translateX(-50%); background:#111827; color:#fff; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); opacity:0; transition: opacity .25s ease; z-index:80 }
     .toast.show{ opacity:1; }
     body.theme-light .toast{ background:#111; color:#fff; }
+
+    /* Estilos para las imágenes del menú móvil */
+    .menu-imagenes { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:8px; padding:12px; }
+    .menu-imagenes img { width:100%; height:96px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,.06); }
+    @media (min-width:768px){ .menu-imagenes img{ height:80px } }
   </style>
 </head>
 <body class="bg-neutral-950 text-white font-inter">
@@ -99,7 +104,7 @@
           <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-marca.fucsia/20 ring-1 ring-white/10">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
           </span>
-          <span class="text-lg font-extrabold tracking-tight">Z<span class="text-marca.fucsia">zumos</span></span></span>
+          <span class="text-lg font-extrabold tracking-tight">Z<span class="text-marca.fucsia">zumos</span></span>
         </a>
         <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
           <a href="#beneficios" class="hover:text-white">Carta</a>
@@ -111,16 +116,23 @@
           <button id="modoBtn" class="px-3 py-2 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition">
             <i data-lucide="moon" class="w-4 h-4"></i>
           </button>
-          <a href="#precios" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja text-sm font-semibold shadow-sutil hover:opacity-95 transition">Empieza ahora</a>
+          <a href="#precios" class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja text-sm font-semibold shadow-sutil hover:opacity-95 transition">Ver planes</a>
           <button class="md:hidden px-3 py-2 rounded-xl bg-white/5 ring-1 ring-white/10" id="openMenu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
     </div>
-    <!-- Menú móvil -->
+    <!-- Menú móvil: ahora incluye mini-galería con imágenes (coloca los archivos en /assets/) -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-white/5">
       <div class="px-4 py-3 space-y-2 bg-neutral-900/80">
+        <!-- Galería de imágenes dentro del menú -->
+        <div class="menu-imagenes">
+          <img src="assets/jugo-1.jpg" alt="Jugo 1">
+          <img src="assets/jugo-2.jpg" alt="Jugo 2">
+          <img src="assets/jugo-3.jpg" alt="Jugo 3">
+          <img src="assets/jugo-4.jpg" alt="Jugo 4">
+        </div>
         <a href="#beneficios" class="block px-3 py-2 rounded-lg hover:bg-white/5">Beneficios</a>
         <a href="#productos" class="block px-3 py-2 rounded-lg hover:bg-white/5">Productos</a>
         <a href="#precios" class="block px-3 py-2 rounded-lg hover:bg-white/5">Precios</a>
@@ -141,7 +153,7 @@
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
             Zzumos: jugos naturales y entradas peruanas 🥤🥟.
           </h1>
-          <p class="mt-5 text-white/80 text-lg max-w-xl">Local demostrativo en Ica. Prueba visual del sitio para una juguería con platos como <strong>causa rellena</strong> y <strong>papa rellena</strong>. Personaliza textos e imágenes a tu gusto.</p>
+          <p class="mt-5 text-white/80 text-lg max-w-xl">Local demostrativo en Ica. Prueba visual del sitio para una juguería con platos como <strong>causa rellena</strong> y <strong>papa rellena</strong>.</p>
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <a href="#precios" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold shadow-sutil hover:opacity-95">Comenzar</a>
             <a href="#productos" class="px-5 py-3 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10">Ver características</a>
@@ -319,45 +331,6 @@
       <div class="reveal grid md:grid-cols-3 gap-6">
         <blockquote class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
           <p class="text-white/80">“Un diseño brutal, listo en una tarde.”</p>
-          <footer class="border-t border-white/10 py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-white/60 text-sm">© <span id="year"></span> Zzumos. Todos los derechos reservados.</p>
-      <div class="flex items-center gap-4 text-white/60">
-        <a href="#" class="hover:text-white">Privacidad</a>
-        <a href="#" class="hover:text-white">Términos</a>
-        <a href="#" id="openAdmin" class="inline-flex items-center gap-1 hover:text-white"><i data-lucide="lock" class="w-4 h-4"></i>Admin (demo)</a>
-        <a href="#" class="inline-flex items-center gap-1 hover:text-white"><i data-lucide="instagram" class="w-4 h-4"></i>Instagram</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal Admin (demo localStorage) -->
-  <div id="adminModal" class="modal" aria-hidden="true">
-    <div class="card">
-      <header>
-        <strong>Mensajes recibidos (demo local)</strong>
-        <div class="flex items-center gap-2">
-          <button id="exportBtn" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Exportar JSON</button>
-          <button id="clearBtn" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Borrar todo</button>
-          <button id="closeAdmin" class="px-3 py-1 rounded-lg bg-white/5 ring-1 ring-white/10">Cerrar</button>
-        </div>
-      </header>
-      <div class="body">
-        <table class="w-full text-sm">
-          <thead class="text-white/70">
-            <tr>
-              <th class="text-left p-2">Fecha</th>
-              <th class="text-left p-2">Nombre</th>
-              <th class="text-left p-2">Email</th>
-              <th class="text-left p-2">Mensaje</th>
-            </tr>
-          </thead>
-          <tbody id="adminTable" class="align-top"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
         </blockquote>
         <blockquote class="p-6 rounded-2xl bg-white/5 ring-1 ring-white/10">
           <p class="text-white/80">“Subí el HTML y empecé a vender.”</p>
@@ -380,11 +353,11 @@
           <p class="mt-3 text-white/80">Página demostrativa. Escríbenos para pedidos o consultas.</p>
           <ul class="mt-6 space-y-3 text-white/80">
             <li class="inline-flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i>+51 965 868 449</li>
-            <li class="inline-flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i><a class="underline hover:no-underline" href="mailto:zzumoscv@gmail.com?subject=Postulaci%C3%B3n%20laboral%20-%20Zzumos&body=Hola%20Zzumos%2C%0A%0AQuiero%20postular%20a%20trabajar%20con%20ustedes.%20Adjunto%20mi%20CV%20y%20datos%20de%20contacto.%0A%0ANombre%3A%0ATel%C3%A9fono%3A%0APuesto%20de%20inter%C3%A9s%3A%0A%0AGracias!">zzumoscv@gmail.com</a> — envía tu CV aquí para postular.</li>
+            <li class="inline-flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i><a class="underline hover:no-underline" href="mailto:zzumoscv@gmail.com?subject=Contacto%20Zzumos">zzumoscv@gmail.com</a></li>
             <li class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i>Ica, Perú</li>
           </ul>
           <div class="mt-6 flex gap-3">
-            <a href="mailto:zzumoscv@gmail.com?subject=Postulaci%C3%B3n%20laboral%20-%20Zzumos&body=Hola%20Zzumos%2C%0A%0AQuiero%20postular%20a%20trabajar%20con%20ustedes.%20Adjunto%20mi%20CV.%0A%0AGracias!" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold">Postular</a>
+            <a href="mailto:zzumoscv@gmail.com?subject=Postulaci%C3%B3n%20laboral%20-%20Zzumos&body=Hola%20Zzumos%2C%0A%0AQuiero%20postular" class="px-5 py-3 rounded-xl bg-gradient-to-r from-marca.fucsia to-marca.naranja font-semibold">Enviar email</a>
             <a href="tel:+51965868449" class="px-5 py-3 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10">Llamar</a>
           </div>
         </div>
@@ -492,7 +465,8 @@
         holder.innerHTML = '<iframe title="Mapa Zzumos" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=W7R3%2BXP%20Ica&output=embed"></iframe>';
       });
     }
-      // --- Envío real con Formspree (configurable) ---
+
+    // --- Envío real con Formspree (configurable) ---
     // 1) Crea tu formulario en https://formspree.io/ y copia el ID.
     // 2) Reemplaza 'XXXXXXXX' por tu ID real. Ejemplo: 'mgegbjzn'.
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/XXXXXXXX'; // TODO: reemplazar
@@ -612,7 +586,6 @@
       });
     }
   </script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
-
-
