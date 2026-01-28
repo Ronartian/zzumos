@@ -2,8 +2,10 @@
 .jugo-card {
   display: flex;
   flex-direction: column;
+
   min-width: clamp(260px, 70vw, 340px);
   scroll-snap-align: start;
+
 }
 
 .jugo-imagen {
@@ -18,6 +20,7 @@
     height: 210px;
   }
 }
+
 
 .jugos-slider {
   display: flex;
@@ -45,3 +48,4 @@
     min-width: 320px;
   }
 }
+
