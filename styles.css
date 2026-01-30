@@ -2,6 +2,7 @@
 .jugo-card {
   display: flex;
   flex-direction: column;
+
   min-width: clamp(260px, 70vw, 340px);
   scroll-snap-align: start;
   position: relative;
@@ -40,6 +41,7 @@
 .jugo-card:hover::before,
 .jugo-card:hover::after {
   opacity: 1;
+
 }
 
 .jugo-imagen {
@@ -48,6 +50,7 @@
   object-fit: cover;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 
 .comida-imagen {
   width: 100%;
@@ -65,18 +68,23 @@
 }
 
 .comida-card::before {
+
   content: "";
   position: absolute;
   inset: -2px;
   border-radius: inherit;
+
   background: conic-gradient(from 0deg, transparent 0deg, var(--comida-color, #F1D34F) 120deg, transparent 240deg, var(--comida-color, #F1D34F));
+
   opacity: 0;
   filter: blur(2px);
   z-index: -1;
   animation: jugo-neon 2.8s linear infinite;
 }
 
+
 .comida-card::after {
+
   content: "";
   position: absolute;
   inset: 0;
@@ -86,6 +94,7 @@
   transition: opacity 0.35s ease;
   z-index: -1;
 }
+
 
 .comida-card:hover {
   box-shadow: 0 0 22px rgba(0, 0, 0, 0.45), 0 0 26px color-mix(in srgb, var(--comida-color, #F1D34F) 70%, transparent);
@@ -97,6 +106,7 @@
   opacity: 1;
 }
 
+
 @media (min-width: 1024px) {
   .jugo-imagen {
     height: 210px;
@@ -105,6 +115,7 @@
   .comida-imagen {
     height: 210px;
   }
+
 }
 
 .jugos-slider {
