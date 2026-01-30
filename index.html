@@ -36,6 +36,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
+  <link rel="preload" as="image" href="images/zzumos-especial.png">
+  <link rel="preload" as="image" href="images/zzumos-surtido.png">
+  <link rel="preload" as="image" href="images/zzumos-papaya.png">
+  <link rel="preload" as="image" href="images/zzumos-pina.png">
+
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -250,8 +256,8 @@
 
         <div id="jugosSlider" class="jugos-slider flex flex-nowrap overflow-x-auto snap-x snap-mandatory pb-1">
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#D6A15B;" data-anim="up" data-delay="0">
+            <img class="jugo-imagen" src="images/zzumos-especial.png" alt="Jugo Especial Zzumos" loading="eager" decoding="async">
 
-            <img class="jugo-imagen" src="images/zzumos-especial.png" alt="Jugo Especial Zzumos">
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -271,8 +277,8 @@
           <!-- Jugo 2 -->
 
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#E05C4F;" data-anim="up" data-delay="100">
+            <img class="jugo-imagen" src="images/zzumos-surtido.png" alt="Surtido Iqueño" loading="eager" decoding="async">
 
-            <img class="jugo-imagen" src="images/zzumos-surtido.png" alt="Surtido Iqueño">
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -292,8 +298,8 @@
           <!-- Jugo 3 -->
 
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F38B2C;" data-anim="up" data-delay="200">
+            <img class="jugo-imagen" src="images/zzumos-papaya.png" alt="Jugo de Papaya" loading="eager" decoding="async">
 
-            <img class="jugo-imagen" src="images/zzumos-papaya.png" alt="Jugo de Papaya">
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -313,8 +319,8 @@
           <!-- Jugo 4 -->
 
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F6D54C;" data-anim="up" data-delay="300">
+            <img class="jugo-imagen" src="images/zzumos-pina.png" alt="Jugo de Piña" loading="eager" decoding="async">
 
-            <img class="jugo-imagen" src="images/zzumos-pina.png" alt="Jugo de Piña">
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -613,7 +619,28 @@
 
     function scrollJugos(amount) {
       if (!jugosSlider) return;
-      jugosSlider.scrollBy({ left: amount, behavior: 'smooth' });
+
+      const start = jugosSlider.scrollLeft;
+      const target = start + amount;
+      const duration = 650;
+      const startTime = performance.now();
+
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOut(progress);
+        jugosSlider.scrollLeft = start + (target - start) * eased;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+
     }
 
     if (jugosPrev) {

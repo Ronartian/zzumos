@@ -50,7 +50,7 @@
   width: 100%;
   height: 190px;
   object-fit: cover;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
 }
 
 
@@ -98,7 +98,6 @@
 }
 
 
-
 .comida-card:hover {
   box-shadow: 0 0 22px rgba(0, 0, 0, 0.45), 0 0 26px color-mix(in srgb, var(--comida-color, #F1D34F) 70%, transparent);
   transform: translateY(-4px);
@@ -125,23 +124,16 @@
   display: flex;
 
   gap: 2.5rem;
-
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   padding-bottom: 4px;
+  scrollbar-width: none;
 }
 
 .jugos-slider::-webkit-scrollbar {
-  height: 6px;
-}
+  display: none;
 
-.jugos-slider::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.jugos-slider::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
 }
 
 @media (min-width: 1024px) {
