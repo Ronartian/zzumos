@@ -35,10 +35,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
   <link rel="preload" as="image" href="images/zzumos-especial.png">
   <link rel="preload" as="image" href="images/zzumos-surtido.png">
   <link rel="preload" as="image" href="images/zzumos-papaya.png">
   <link rel="preload" as="image" href="images/zzumos-pina.png">
+
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -251,9 +253,11 @@
       </div>
       <div class="mt-12">
         <!-- Jugo 1 -->
+
         <div id="jugosSlider" class="jugos-slider flex flex-nowrap overflow-x-auto snap-x snap-mandatory pb-1">
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#D6A15B;" data-anim="up" data-delay="0">
             <img class="jugo-imagen" src="images/zzumos-especial.png" alt="Jugo Especial Zzumos" loading="eager" decoding="async">
+
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -271,8 +275,10 @@
             </div>
           </article>
           <!-- Jugo 2 -->
+
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#E05C4F;" data-anim="up" data-delay="100">
             <img class="jugo-imagen" src="images/zzumos-surtido.png" alt="Surtido Iqueño" loading="eager" decoding="async">
+
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -290,8 +296,10 @@
             </div>
           </article>
           <!-- Jugo 3 -->
+
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F38B2C;" data-anim="up" data-delay="200">
             <img class="jugo-imagen" src="images/zzumos-papaya.png" alt="Jugo de Papaya" loading="eager" decoding="async">
+
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -309,8 +317,10 @@
             </div>
           </article>
           <!-- Jugo 4 -->
+
           <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F6D54C;" data-anim="up" data-delay="300">
             <img class="jugo-imagen" src="images/zzumos-pina.png" alt="Jugo de Piña" loading="eager" decoding="async">
+
             <div class="p-4">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
@@ -336,6 +346,7 @@
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </div>
+
       </div>
     </div>
   </section>
@@ -608,6 +619,7 @@
 
     function scrollJugos(amount) {
       if (!jugosSlider) return;
+
       const start = jugosSlider.scrollLeft;
       const target = start + amount;
       const duration = 650;
@@ -628,23 +640,28 @@
       }
 
       requestAnimationFrame(step);
+
     }
 
     if (jugosPrev) {
       jugosPrev.addEventListener('click', () => {
+
         const firstCard = jugosSlider.querySelector('.jugo-card');
         const gap = parseFloat(getComputedStyle(jugosSlider).gap || '0');
         const step = (firstCard?.offsetWidth || 300) + gap;
         scrollJugos(-step);
+
       });
     }
 
     if (jugosNext) {
       jugosNext.addEventListener('click', () => {
+
         const firstCard = jugosSlider.querySelector('.jugo-card');
         const gap = parseFloat(getComputedStyle(jugosSlider).gap || '0');
         const step = (firstCard?.offsetWidth || 300) + gap;
         scrollJugos(step);
+
       });
     }
 
