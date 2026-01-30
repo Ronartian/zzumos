@@ -127,9 +127,11 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+
   padding: 20px 0;
   scrollbar-width: none;
   scroll-behavior: smooth;
+
 }
 
 .jugos-slider::-webkit-scrollbar {
