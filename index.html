@@ -34,6 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -129,10 +130,10 @@
       <div class="px-4 py-3 space-y-2 bg-neutral-900/80">
         <!-- Galería de imágenes dentro del menú -->
         <div class="menu-imagenes">
-          <img src="images/Zzumo's_surtido.png" alt="Jugo 1">
-          <img src="images/Zzumo's_papaya.png" alt="Jugo 2">
-          <img src="images/Zzumo's_especial.png" alt="Jugo 3">
-          <img src="images/Zzumo's_piña.png" alt="Jugo 4">
+          <img src="images/zzumos-surtido.png" alt="Jugo 1">
+          <img src="images/zzumos-papaya.png" alt="Jugo 2">
+          <img src="images/zzumos-especial.png" alt="Jugo 3">
+          <img src="images/zzumos-pina.png" alt="Jugo 4">
         </div>
         <a href="#beneficios" class="block px-3 py-2 rounded-lg hover:bg-white/5">Beneficios</a>
         <a href="#jugos" class="block px-3 py-2 rounded-lg hover:bg-white/5">Jugos</a>
@@ -244,55 +245,93 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold">Nuestros Jugos</h2>
         <p class="mt-3 text-white/80">Selección de jugos frescos y especiales de la casa.</p>
       </div>
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="mt-12">
         <!-- Jugo 1 -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="0">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="droplet" class="w-6 h-6 text-marca.fucsia"></i>
+        <div id="jugosSlider" class="jugos-slider flex flex-nowrap gap-6 overflow-x-auto snap-x snap-mandatory pb-1">
+          <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] snap-start" style="--jugo-color:#D6A15B;" data-anim="up" data-delay="0">
+            <img class="jugo-imagen" src="images/zzumos-especial.png" alt="Jugo Especial Zzumos">
+            <div class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
+                  <i data-lucide="droplet" class="w-6 h-6 text-marca.fucsia"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold">Jugo Especial Zzumos</h3>
+                  <p class="text-sm text-white/70 mt-1">Mezcla de frutas tropicales con un toque secreto.</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
+                <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+              </div>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold">Jugo Especial Zzumos</h3>
-              <p class="text-sm text-white/70 mt-1">Mezcla de frutas tropicales con un toque secreto.</p>
+          </article>
+          <!-- Jugo 2 -->
+          <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] snap-start" style="--jugo-color:#E05C4F;" data-anim="up" data-delay="100">
+            <img class="jugo-imagen" src="images/zzumos-surtido.png" alt="Surtido Iqueño">
+            <div class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
+                  <i data-lucide="droplet" class="w-6 h-6 text-marca.fucsia"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold">Surtido Iqueño</h3>
+                  <p class="text-sm text-white/70 mt-1">Selección de frutas locales, refrescante y natural.</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
+                <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+              </div>
             </div>
-          </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
-          </div>
-        </article>
-        <!-- Jugo 2 -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="100">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="apple" class="w-6 h-6 text-marca.fucsia"></i>
+          </article>
+          <!-- Jugo 3 -->
+          <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] snap-start" style="--jugo-color:#F38B2C;" data-anim="up" data-delay="200">
+            <img class="jugo-imagen" src="images/zzumos-papaya.png" alt="Jugo de Papaya">
+            <div class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
+                  <i data-lucide="droplet" class="w-6 h-6 text-marca.fucsia"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold">Jugo de Papaya</h3>
+                  <p class="text-sm text-white/70 mt-1">Suave y digestivo, perfecto para cualquier hora.</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
+                <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+              </div>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold">Surtido Iqueño</h3>
-              <p class="text-sm text-white/70 mt-1">Selección de frutas locales, refrescante y natural.</p>
+          </article>
+          <!-- Jugo 4 -->
+          <article class="reveal jugo-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] snap-start" style="--jugo-color:#F6D54C;" data-anim="up" data-delay="300">
+            <img class="jugo-imagen" src="images/zzumos-pina.png" alt="Jugo de Piña">
+            <div class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
+                  <i data-lucide="droplet" class="w-6 h-6 text-marca.fucsia"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold">Jugo de Piña</h3>
+                  <p class="text-sm text-white/70 mt-1">Refrescante y cítrico, ideal para levantar el ánimo.</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
+                <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+              </div>
             </div>
-          </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
-          </div>
-        </article>
-        <!-- Jugo 3 -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="200">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.fucsia/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="coffee" class="w-6 h-6 text-marca.fucsia"></i>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold">Jugo de Fresa con Leche</h3>
-              <p class="text-sm text-white/70 mt-1">Clásico cremoso, ideal para los que aman la fresa.</p>
-            </div>
-          </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.fucsia/20 ring-1 ring-white/10">Jugo</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
-          </div>
-        </article>
+          </article>
+        </div>
+        <div class="jugos-controles mt-6 flex items-center justify-center gap-3">
+          <button id="jugosPrev" class="px-4 py-2 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition" type="button" aria-label="Deslizar jugos a la izquierda">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          </button>
+          <button id="jugosNext" class="px-4 py-2 rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition" type="button" aria-label="Deslizar jugos a la derecha">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -304,53 +343,62 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold">Entradas Peruanas</h2>
         <p class="mt-3 text-white/80">Delicias tradicionales para acompañar tus jugos.</p>
       </div>
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Causa Rellena -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="0">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="knife" class="w-6 h-6 text-marca.naranja"></i>
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+        <!-- Alitas Bouchet -->
+        <article class="reveal comida-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition" style="--comida-color:#F28B2C;" data-anim="up" data-delay="0">
+          <img class="comida-imagen" src="images/alitas-bouchet-zzumos.png" alt="Alitas Bouchet">
+          <div class="p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
+                <i data-lucide="award" class="w-6 h-6 text-marca.naranja"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Alitas Bouchet</h3>
+                <p class="text-sm text-white/70 mt-1">Alitas jugosas glaseadas con un toque cítrico y especias, doradas al punto para un sabor intenso.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold">Causa Rellena</h3>
-              <p class="text-sm text-white/70 mt-1">Tradicional, cremosa y con sazón peruana.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
+              <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
             </div>
           </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+        </article>
+        <!-- Causa Rellena -->
+        <article class="reveal comida-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition" style="--comida-color:#F1D34F;" data-anim="up" data-delay="100">
+          <img class="comida-imagen" src="images/causa-rellena-zzumos.png" alt="Causa Rellena">
+          <div class="p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
+                <i data-lucide="award" class="w-6 h-6 text-marca.naranja"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Causa Rellena</h3>
+                <p class="text-sm text-white/70 mt-1">Puré de papa amarilla con limón y ají, relleno cremoso y servido bien fresco.</p>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
+              <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
+            </div>
           </div>
         </article>
         <!-- Papa Rellena -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="100">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="award" class="w-6 h-6 text-marca.naranja"></i>
+        <article class="reveal comida-card glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 transition" style="--comida-color:#8B5A32;" data-anim="up" data-delay="200">
+          <img class="comida-imagen" src="images/papa-rellena-zzumos.png" alt="Papa Rellena">
+          <div class="p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
+                <i data-lucide="award" class="w-6 h-6 text-marca.naranja"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold">Papa Rellena</h3>
+                <p class="text-sm text-white/70 mt-1">Papa dorada y crujiente con relleno sazonado, ideal para disfrutar con salsa casera.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold">Papa Rellena</h3>
-              <p class="text-sm text-white/70 mt-1">Crujiente por fuera, jugosa por dentro.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
+              <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
             </div>
-          </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
-          </div>
-        </article>
-        <!-- Tamales -->
-        <article class="reveal glass rounded-2xl overflow-hidden ring-1 ring-white/10 bg-white/5 hover:bg-white/10 transition p-4" data-anim="up" data-delay="200">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-marca.naranja/20 flex items-center justify-center ring-1 ring-white/10">
-              <i data-lucide="box" class="w-6 h-6 text-marca.naranja"></i>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold">Tamales</h3>
-              <p class="text-sm text-white/70 mt-1">Hechos al modo tradicional, perfectos con ají.</p>
-            </div>
-          </div>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 text-[11px] uppercase tracking-wider px-2 py-1 rounded-full bg-marca.naranja/20 ring-1 ring-white/10">Entrada</span>
-            <a href="#contacto" class="text-sm font-semibold text-marca.lima hover:underline">Pedir info</a>
           </div>
         </article>
       </div>
@@ -546,6 +594,28 @@
     if (btn && holder) {
       btn.addEventListener('click', () => {
         holder.innerHTML = '<iframe title="Mapa Zzumos" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=W7R3%2BXP%20Ica&output=embed"></iframe>';
+      });
+    }
+
+    // Slider de jugos
+    const jugosSlider = document.getElementById('jugosSlider');
+    const jugosPrev = document.getElementById('jugosPrev');
+    const jugosNext = document.getElementById('jugosNext');
+
+    function scrollJugos(amount) {
+      if (!jugosSlider) return;
+      jugosSlider.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+
+    if (jugosPrev) {
+      jugosPrev.addEventListener('click', () => {
+        scrollJugos(-(jugosSlider?.clientWidth || 300));
+      });
+    }
+
+    if (jugosNext) {
+      jugosNext.addEventListener('click', () => {
+        scrollJugos(jugosSlider?.clientWidth || 300);
       });
     }
 
