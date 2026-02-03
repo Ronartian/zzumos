@@ -1,7 +1,15 @@
 /* Estilos para la sección de jugos */
+
+.logo-img {
+  height: 45px;
+  width: auto;
+  display: block;
+}
+
 .jugo-card {
   display: flex;
   flex-direction: column;
+
 
   flex: 0 0 auto;
   min-width: clamp(260px, 70vw, 340px);
