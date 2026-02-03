@@ -1,4 +1,5 @@
 /* Estilos para la sección de jugos */
+
 .logo-img {
   height: 45px;
   width: auto;
@@ -8,6 +9,7 @@
 .jugo-card {
   display: flex;
   flex-direction: column;
+
 
   flex: 0 0 auto;
   min-width: clamp(260px, 70vw, 340px);
@@ -133,9 +135,11 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+
   padding: 20px 0;
   scrollbar-width: none;
   scroll-behavior: smooth;
+
 }
 
 .jugos-slider::-webkit-scrollbar {

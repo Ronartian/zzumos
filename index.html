@@ -233,7 +233,9 @@
         <!-- Jugo 1 -->
 
         <div id="jugosSlider" class="jugos-slider flex flex-nowrap overflow-x-auto snap-x snap-mandatory pb-1">
+
           <article class="reveal jugo-card glass rounded-2xl ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#D6A15B;" data-anim="up" data-delay="0">
+
             <img class="jugo-imagen" src="images/zzumos-especial.png" alt="Jugo Especial Zzumos" loading="eager" decoding="async">
 
             <div class="p-4">
@@ -254,7 +256,9 @@
           </article>
           <!-- Jugo 2 -->
 
+
           <article class="reveal jugo-card glass rounded-2xl ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#E05C4F;" data-anim="up" data-delay="100">
+
             <img class="jugo-imagen" src="images/zzumos-surtido.png" alt="Surtido Iqueño" loading="eager" decoding="async">
 
             <div class="p-4">
@@ -275,7 +279,9 @@
           </article>
           <!-- Jugo 3 -->
 
+
           <article class="reveal jugo-card glass rounded-2xl ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F38B2C;" data-anim="up" data-delay="200">
+
             <img class="jugo-imagen" src="images/zzumos-papaya.png" alt="Jugo de Papaya" loading="eager" decoding="async">
 
             <div class="p-4">
@@ -296,7 +302,9 @@
           </article>
           <!-- Jugo 4 -->
 
+
           <article class="reveal jugo-card glass rounded-2xl ring-1 ring-white/10 bg-white/5 transition snap-start" style="--jugo-color:#F6D54C;" data-anim="up" data-delay="300">
+
             <img class="jugo-imagen" src="images/zzumos-pina.png" alt="Jugo de Piña" loading="eager" decoding="async">
 
             <div class="p-4">
@@ -595,8 +603,10 @@
 
     function scrollJugos(amount) {
       if (!jugosSlider) return;
+
       const target = jugosSlider.scrollLeft + amount;
       jugosSlider.scrollTo({ left: target, behavior: 'smooth' });
+
     }
 
     if (jugosPrev) {
