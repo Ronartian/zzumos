@@ -87,9 +87,12 @@
   <header class="sticky top-0 z-40 bg-neutral-950/70 glass border-b border-white/5">
     <div class="linea-grad"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between py-4">
+      <div class="relative flex items-center justify-between py-4">
         <a href="#" class="flex items-center gap-2 group">
           <img class="logo-img" src="images/zzumos_logo.png" alt="Zzumos logo">
+        </a>
+        <a href="#" class="absolute left-1/2 -translate-x-1/2 flex items-center">
+          <img class="logo-img logo-img-center" src="images/zzumos_logo.png" alt="Zzumos logo">
         </a>
         <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
           <a href="#beneficios" class="hover:text-white">Carta</a>
@@ -155,33 +158,10 @@
           <div class="relative">
             <div class="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-marca.fucsia/30 via-marca.lima/20 to-marca.naranja/30 blur-2xl"></div>
             <div class="relative bg-neutral-900/60 glass rounded-3xl ring-1 ring-white/10 p-5 shadow-sutil">
-              <div class="aspect-[16/10] rounded-2xl bg-neutral-950 border border-white/10 overflow-hidden">
-                <!-- Mockup simple -->
-                <div class="h-10 bg-neutral-900/70 flex items-center gap-1 px-3 border-b border-white/10">
-                  <span class="w-3 h-3 rounded-full bg-marca.naranja"></span>
-                  <span class="w-3 h-3 rounded-full bg-marca.lima"></span>
-                  <span class="w-3 h-3 rounded-full bg-marca.fucsia"></span>
-                  <span class="ml-3 text-xs text-white/60">demo.tumarca.com</span>
-                </div>
-                <div class="p-6 grid gap-4 sm:grid-cols-2">
-                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
-                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="rocket" class="w-4 h-4"></i>Lanzamiento veloz</div>
-                    <p class="mt-2 text-sm text-white/80">HTML puro con Tailwind, sin build tools.</p>
-                  </div>
-                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
-                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="mouse-pointer-click" class="w-4 h-4"></i>Interacciones suaves</div>
-                    <p class="mt-2 text-sm text-white/80">Animaciones por IntersectionObserver.</p>
-                  </div>
-                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
-                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="palette" class="w-4 h-4"></i>Colores de marca</div>
-                    <p class="mt-2 text-sm text-white/80">Fucsia, lima, naranja y negro.</p>
-                  </div>
-                  <div class="p-4 rounded-xl bg-white/5 ring-1 ring-white/10">
-                    <div class="flex items-center gap-2 text-sm text-white/70"><i data-lucide="wand-2" class="w-4 h-4"></i>Estética glass</div>
-                    <p class="mt-2 text-sm text-white/80">Fondos blur y sombras sutiles.</p>
-                  </div>
-                </div>
+              <div class="aspect-video rounded-2xl bg-neutral-950 border border-white/10 overflow-hidden">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID" title="Video Zzumos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
               </div>
+              <p class="mt-4 text-sm text-white/70">Reemplaza <strong>VIDEO_ID</strong> por el ID del video de YouTube de tu empresa.</p>
             </div>
           </div>
         </div>
