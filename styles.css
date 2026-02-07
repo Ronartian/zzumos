@@ -136,7 +136,7 @@
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
 
-  padding: 20px 0;
+  padding: 40px 0;
   scrollbar-width: none;
   scroll-behavior: smooth;
 
