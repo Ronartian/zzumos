@@ -6,6 +6,10 @@
   display: block;
 }
 
+.logo-img-center {
+  height: 56px;
+}
+
 .jugo-card {
   display: flex;
   flex-direction: column;
